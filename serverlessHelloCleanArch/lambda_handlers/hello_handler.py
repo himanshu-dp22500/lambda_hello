@@ -1,10 +1,9 @@
 import json
 from typing import Dict
 
-
 def hello_lambda_handler(event, context):
-    print("Request Body: ", event)
-    body = event["body"]
+    # print("Request Body: ", event)
+    body = json.loads(event["body"])
     validate_body(body=body)
 
     from serverlessHelloCleanArch.interactors.hello import HelloInteractor
@@ -14,8 +13,7 @@ def hello_lambda_handler(event, context):
     storage = StorageImplementation()
     interactor = HelloInteractor(storage=storage)
     presenter = PresenterImplementation()
-
-    return interactor.hello_wrapper(text=body["text"], presenter=presenter)
+    return interactor.hello_wrapper(text=body["body"]["text"], presenter=presenter)
 
 def validate_body(body:Dict):
     required_keys = ["text"]
@@ -35,3 +33,5 @@ def validate_body(body:Dict):
         return {
             "statusCode": 200, "body": json.dumps(body)
         }
+
+print(hello_lambda_handler(event={"body": "{\n    \"body\":{\n        \"text\":\"Hello Himanshu\"\n    }\n}"}, context=""))

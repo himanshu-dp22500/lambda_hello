@@ -24,5 +24,5 @@ class PresenterImplementation(PresenterInterface):
         return {
             "id": message_dto.id,
             "text": message_dto.text,
-            "created_at": message_dto.created_at
+            "created_at": str(message_dto.created_at)
         }

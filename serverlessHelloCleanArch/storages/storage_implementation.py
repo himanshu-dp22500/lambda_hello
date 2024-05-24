@@ -10,9 +10,10 @@ class StorageImplementation(StorageInterface):
     def get_session(self) -> Session:
         import configparser
 
-        config = configparser.ConfigParser()
-        config.read('serverlessHelloCleanArch/alembic.ini')
-        database_url = config.get('alembic', 'sqlalchemy.url')
+        # config = configparser.ConfigParser()
+        # config.read('serverlessHelloCleanArch/alembic.ini')
+        # database_url = config.get('alembic', 'sqlalchemy.url')
+        database_url = "sqlite:///db.db"
 
         engine = create_engine(database_url)
         session = Session(bind=engine)
