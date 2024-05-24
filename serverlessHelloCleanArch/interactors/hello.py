@@ -1,0 +1,3 @@
+class HelloInteractor:
+    pass
+
