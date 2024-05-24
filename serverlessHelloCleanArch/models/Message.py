@@ -12,7 +12,3 @@ class Message(Base):
     id = Column(String(255), primary_key=True, default=lambda: str(uuid4()))
     created_at = Column(DateTime, default=datetime.now)
     text = Column(String(255))
-
-    @classmethod
-    def create_message(cls, text):
-        pass
