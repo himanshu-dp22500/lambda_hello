@@ -1,14 +1,17 @@
 import json
 from typing import Dict
 
+
 def hello_lambda_handler(event, context):
     # print("Request Body: ", event)
     body = json.loads(event["body"])
     validate_body(body=body)
 
     from serverlessHelloCleanArch.interactors.hello import HelloInteractor
-    from serverlessHelloCleanArch.storages.storage_implementation import StorageImplementation
-    from serverlessHelloCleanArch.presenters.presenter_implementation import PresenterImplementation
+    from serverlessHelloCleanArch.presenters.presenter_implementation import \
+        PresenterImplementation
+    from serverlessHelloCleanArch.storages.storage_implementation import \
+        StorageImplementation
 
     storage = StorageImplementation()
     interactor = HelloInteractor(storage=storage)

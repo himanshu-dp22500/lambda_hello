@@ -2,13 +2,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
 from serverlessHelloCleanArch.interactors.storages.dtos import MessageDTO
-from serverlessHelloCleanArch.interactors.storages.storage_interface import StorageInterface
+from serverlessHelloCleanArch.interactors.storages.storage_interface import \
+    StorageInterface
 from serverlessHelloCleanArch.models.Message import Message
 
 
 class StorageImplementation(StorageInterface):
     def get_session(self) -> Session:
-        import configparser
+        pass
 
         # config = configparser.ConfigParser()
         # config.read('serverlessHelloCleanArch/alembic.ini')
@@ -35,4 +36,3 @@ class StorageImplementation(StorageInterface):
             text=message.text,
             created_at=message.created_at
         )
-

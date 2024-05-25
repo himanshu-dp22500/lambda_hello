@@ -1,7 +1,8 @@
 import json
 from typing import Dict
 
-from serverlessHelloCleanArch.interactors.presenters.presenter_interface import PresenterInterface
+from serverlessHelloCleanArch.interactors.presenters.presenter_interface import \
+    PresenterInterface
 from serverlessHelloCleanArch.interactors.storages.dtos import MessageDTO
 
 

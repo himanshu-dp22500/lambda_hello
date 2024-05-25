@@ -1,5 +1,6 @@
 import json
 
+
 def bye_lambda_handler(event, context):
     body = {
         "message": "Go Serverless v2.0! Your function executed successfully!",

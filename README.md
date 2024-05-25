@@ -1,4 +1,4 @@
-virtualenv venv 
+virtualenv venv
 
 pip install SQLAlchemy
 

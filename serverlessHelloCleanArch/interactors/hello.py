@@ -1,9 +1,12 @@
-from typing import Dict
 import traceback
+from typing import Dict
 
+from serverlessHelloCleanArch.interactors.presenters.presenter_interface import \
+    PresenterInterface
 from serverlessHelloCleanArch.interactors.storages.dtos import MessageDTO
-from serverlessHelloCleanArch.interactors.storages.storage_interface import StorageInterface
-from serverlessHelloCleanArch.interactors.presenters.presenter_interface import PresenterInterface
+from serverlessHelloCleanArch.interactors.storages.storage_interface import \
+    StorageInterface
+
 
 class HelloInteractor:
     def __init__(self, storage: StorageInterface):
@@ -22,4 +25,3 @@ class HelloInteractor:
     def hello(self, text: str) -> MessageDTO:
         message_dto = self.storage.create_message(text=text)
         return message_dto
-

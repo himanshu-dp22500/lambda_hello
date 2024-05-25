@@ -1,5 +1,4 @@
 from abc import ABC
-from abc import abstractmethod
 from typing import Dict
 
 from serverlessHelloCleanArch.interactors.storages.dtos import MessageDTO
