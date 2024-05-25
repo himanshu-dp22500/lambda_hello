@@ -6,8 +6,9 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
 class Message(Base):
-    __tablename__ = 'message'
+    __tablename__ = "message"
 
     id = Column(String(255), primary_key=True, default=lambda: str(uuid4()))
     created_at = Column(DateTime, default=datetime.now)

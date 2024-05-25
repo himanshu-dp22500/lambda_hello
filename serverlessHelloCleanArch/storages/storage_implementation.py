@@ -2,8 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
 from serverlessHelloCleanArch.interactors.storages.dtos import MessageDTO
-from serverlessHelloCleanArch.interactors.storages.storage_interface import \
-    StorageInterface
+from serverlessHelloCleanArch.interactors.storages.storage_interface import (
+    StorageInterface,
+)
 from serverlessHelloCleanArch.models.Message import Message
 
 
@@ -21,7 +22,7 @@ class StorageImplementation(StorageInterface):
 
         return session
 
-    def create_message(self, text:str) -> MessageDTO:
+    def create_message(self, text: str) -> MessageDTO:
         session = self.get_session()
         new_message = Message(text=text)
 
@@ -30,9 +31,7 @@ class StorageImplementation(StorageInterface):
 
         return self._get_message_dto(message=new_message)
 
-    def _get_message_dto(self,message: Message) -> MessageDTO:
+    def _get_message_dto(self, message: Message) -> MessageDTO:
         return MessageDTO(
-            id=message.id,
-            text=message.text,
-            created_at=message.created_at
+            id=message.id, text=message.text, created_at=message.created_at
         )
