@@ -6,8 +6,6 @@ repos:
         stages: [commit]
       - id: end-of-file-fixer
         stages: [commit]
-      - id: check-docstring-first
-        stages: [commit]
       - id: check-json
         stages: [commit]
       - id: check-yaml

@@ -1,6 +1,7 @@
 import traceback
 from typing import Dict
 
+from serverlessHelloCleanArch.constants.enums import MessageType
 from serverlessHelloCleanArch.interactors.presenters.presenter_interface import (
     PresenterInterface,
 )
@@ -27,5 +28,7 @@ class HelloInteractor:
             )
 
     def hello(self, text: str) -> MessageDTO:
-        message_dto = self.storage.create_message(text=text)
+        message_dto = self.storage.create_message(
+            text=text, message_type=MessageType.HELLO
+        )
         return message_dto
