@@ -9,7 +9,6 @@ import sqlalchemy as sa
 from sqlalchemy.sql import text
 
 from alembic import op
-from serverlessHelloCleanArch.constants.enums import MessageType
 
 # revision identifiers, used by Alembic.
 revision = "493b464208ab"
@@ -19,9 +18,7 @@ depends_on = None
 
 
 def upgrade():
-    MessageTypeEnum = sa.Enum(
-        *[e.value for e in MessageType], name="messageTypes"
-    )
+    MessageTypeEnum = sa.Enum(*["HELLO", "BYE"], name="messageTypes")
     MessageTypeEnum.create(op.get_bind(), checkfirst=False)
 
     op.add_column(
