@@ -12,7 +12,7 @@ from serverlessHelloCleanArch.models.Message import Message
 class StorageImplementation(StorageInterface):
     def get_session(self) -> Session:
         # database_url ="postgresql+psycopg2://postgres:N]2j$zati:qf7U9@cleanarch.c7kui26ientd.ap-south-1.rds.amazonaws.com:5432/clean_arch_hello"
-        database_url = "sqlite:///../../db.db"
+        database_url = "postgresql+psycopg2://postgres:somePassword@localhost:5432/clean_arch_hello"
         engine = create_engine(database_url)
         session = Session(bind=engine)
 
