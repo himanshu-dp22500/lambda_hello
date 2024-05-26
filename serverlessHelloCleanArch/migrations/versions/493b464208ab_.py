@@ -20,7 +20,7 @@ depends_on = None
 
 def upgrade():
     MessageTypeEnum = sa.Enum(
-        *[e.value for e in MessageType], name="messageType"
+        *[e.value for e in MessageType], name="messageTypes"
     )
     MessageTypeEnum.create(op.get_bind(), checkfirst=False)
 
