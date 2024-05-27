@@ -3,16 +3,18 @@ from sqlalchemy.orm import Session
 
 from serverlessHelloCleanArch.constants.enums import MessageType
 from serverlessHelloCleanArch.interactors.storages.dtos import MessageDTO
-from serverlessHelloCleanArch.interactors.storages.storage_interface import (
-    StorageInterface,
-)
+from serverlessHelloCleanArch.interactors.storages.storage_interface import \
+    StorageInterface
 from serverlessHelloCleanArch.models.Message import Message
 
 
 class StorageImplementation(StorageInterface):
     def get_session(self) -> Session:
-        # database_url ="postgresql+psycopg2://postgres:N]2j$zati:qf7U9@cleanarch.c7kui26ientd.ap-south-1.rds.amazonaws.com:5432/clean_arch_hello"
-        database_url = "postgresql+psycopg2://postgres:somePassword@localhost:5432/clean_arch_hello"
+        from serverlessHelloCleanArch.interactors.get_database_url import \
+            GetDatabaseURLInteractor
+        interactor = GetDatabaseURLInteractor()
+
+        database_url = interactor.get_database_url()
         engine = create_engine(database_url)
         session = Session(bind=engine)
 

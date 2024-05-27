@@ -13,3 +13,15 @@ functions:
       - httpApi:
           path: /
           method: post
+
+# you can overwrite defaults here
+  stage: ${opt:stage}
+  region: ap-south-1
+  vpc:
+    securityGroupIds:
+      - sg-dc65ccbf
+    subnetIds:
+      - subnet-0984343d0de359928
+      - subnet-02516599457190624
+  environment:
+    CURRENT_STAGE: ${opt:stage}
