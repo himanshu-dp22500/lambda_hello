@@ -1,0 +1,3 @@
+[submodule "serverlessHelloCleanArch/database"]
+	path = serverlessHelloCleanArch/database
+	url = git@dailype:himanshu-dp22500/database.git
