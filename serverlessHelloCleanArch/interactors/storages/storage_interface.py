@@ -10,3 +10,7 @@ class StorageInterface(ABC):
         self, text: str, message_type: MessageType
     ) -> MessageDTO:
         pass
+
+    @abstractmethod
+    def get_message(self, message_id:str) -> MessageDTO:
+        pass

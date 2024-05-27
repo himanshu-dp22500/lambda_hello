@@ -6,11 +6,12 @@ from serverlessHelloCleanArch.interactors.storages.dtos import MessageDTO
 from serverlessHelloCleanArch.interactors.storages.storage_interface import (
     StorageInterface,
 )
-from serverlessHelloCleanArch.models.Message import Message
+from serverlessHelloCleanArch.database.models.Message import Message
 
 
 class StorageImplementation(StorageInterface):
-    def get_session(self) -> Session:
+    @staticmethod
+    def get_session() -> Session:
         from serverlessHelloCleanArch.interactors.get_database_url import (
             GetDatabaseURLInteractor,
         )
@@ -34,10 +35,14 @@ class StorageImplementation(StorageInterface):
 
         return self._get_message_dto(message=new_message)
 
-    def _get_message_dto(self, message: Message) -> MessageDTO:
+    @staticmethod
+    def _get_message_dto(message: Message) -> MessageDTO:
         return MessageDTO(
             id=message.id,
             text=message.text,
             created_at=message.created_at,
             message_type=message.message_type,
         )
+
+    def get_message(self, message_id:str) -> MessageDTO:
+        pass
