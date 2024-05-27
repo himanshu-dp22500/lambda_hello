@@ -38,7 +38,7 @@ def validate_body(body: Dict):
 print(
     hello_lambda_handler(
         event={
-            "body": '{\n    "body":{\n        "text":"Hello yo Himanshu"\n    }\n}'
+            "body": '{\n    "body":{\n        "text":"Hello yo Himanshu again"\n    }\n}'
         },
         context="",
     )

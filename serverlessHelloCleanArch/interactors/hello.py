@@ -29,6 +29,6 @@ class HelloInteractor:
 
     def hello(self, text: str) -> MessageDTO:
         message_dto = self.storage.create_message(
-            text=text, message_type=MessageType.HELLO
+            text=text, message_type=MessageType.HELLO.value
         )
         return message_dto
