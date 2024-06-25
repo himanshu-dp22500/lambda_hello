@@ -6,13 +6,6 @@ service: helloCleanArchV2
 provider:
   name: aws
   runtime: python3.12
-functions:
-  hello:
-    handler: serverlessHelloCleanArch.lambda_handlers.hello_handler.hello_lambda_handler
-    events:
-      - httpApi:
-          path: /
-          method: post
 
 # you can overwrite defaults here
   stage: ${opt:stage}
@@ -25,3 +18,42 @@ functions:
       - subnet-02516599457190624
   environment:
     CURRENT_STAGE: ${opt:stage}
+
+
+custom:
+  gitDescription: ${git:repository} - ${git:branch} - ${git:sha1} - ${git:isDirty}
+  stage: ${opt:stage}
+  dc_mail_list:
+    dev: '["ankur@dailype.in"]'
+    prod: '["dp_founder","lender_daily_collection_repayment","ashwin@dailype.in","ankur@dailype.in","prashanth@dailype.in",
+            "sagar.dave@margtechno.com"]'
+  log_state:
+    dev: ${opt:log_state, 'INFO'}
+    prod: ${opt:log_state, 'INFO'}
+  pythonRequirements:
+    zip: true
+  iam:
+    - los-${opt:stage}-ap-south-1-lambdaRole
+  authorizerArn:
+    dev: arn:aws:lambda:ap-south-1:779752077158:function:authorization-dev-authorizer
+    prod: arn:aws:lambda:ap-south-1:779752077158:function:authorization-prod-authorizer
+
+functions:
+  hello:
+    handler: serverlessHelloCleanArch.lambda_handlers.hello_handler.hello_lambda_handler
+    name: ${self:service}-${sls:stage}-hello
+    description: ${self:custom.gitDescription}
+    timeout: 900
+    events:
+      - http:
+          path: /hello
+          method: post
+          cors: true
+
+plugins:
+  - serverless-plugin-git-variables
+package:
+  patterns:
+    - '!venv/**'
+    - '!.idea/**'
+    - '!.vscode/**'
